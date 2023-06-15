@@ -71,10 +71,9 @@ const accountObj = new AccountPage()
 
 describe('Account page', ()=>{
     beforeEach(()=>{
-        cy.login('gohar.abbas@invozone.com', 'goharabbas123')
+        cy.login('youremail@gmail.com', 'test123')
     })
     it('update profile', () => {
-        cy.wait(10000)
         cy.get(':nth-child(1) > .link-button').click()
     })
     // it.only('update profile', ()=>{
