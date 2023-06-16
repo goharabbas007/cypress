@@ -21,12 +21,9 @@ Cypress.Commands.add('login', (login_email, login_password)=>{
         cy.get('.btn').click()
         cy.get('#password').type(login_password)
         cy.get('.btn').click()
-    }),
-    {
-        validate(){
-        cy.get(':nth-child(1) > .link-button').should('exist')
-        }
-    }
+        cy.get('.e2e-nickname').should('be.visible')
+    })
+    // this block of code is used when we want to use the session file accross multiple specs files
     // {
     //     cacheAcrossSpecs: true
     // }

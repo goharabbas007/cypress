@@ -71,17 +71,14 @@ const accountObj = new AccountPage()
 
 describe('Account page', ()=>{
     beforeEach(()=>{
-        cy.login('youremail@gmail.com', 'test123')
+        cy.login('youremail@gmail.com', 'password123')
     })
     it('update profile', () => {
-        cy.get(':nth-child(1) > .link-button').click()
+        cy.visit('https://www.telerik.com/account')
+        accountObj.updateProfile('new nickname')
     })
-    // it.only('update profile', ()=>{
-    //     cy.get(':nth-child(1) > .link-button').click()
-    //     // accountObj.updateProfile('new nickname')
-    // })
-    // it('Complete login & logout flow', ()=>{
-    //     homeObj.navDrawerBtn()
-    //     accountObj.logout()
-    // })
+    it('logout flow', ()=>{
+        homeObj.navDrawerBtn()
+        accountObj.logout()
+    })
 })

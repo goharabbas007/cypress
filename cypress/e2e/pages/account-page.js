@@ -4,6 +4,7 @@ export class AccountPage{
     profile_link = ':nth-child(1) > .link-button'
     nick_name = '#nick_name'
     update_profile_btn = '.u-cf > .btn'
+    success_popup = '.notification-body > .ng-star-inserted'
 
     logout(){
         cy.get(this.your_account).click()
@@ -11,8 +12,8 @@ export class AccountPage{
     }
     updateProfile(nickname){
         cy.get(this.profile_link).click()
-        cy.get(this.nick_name).clear()
-        cy.get(this.nick_name).type(nickname)
+        cy.get(this.nick_name).clear().type(nickname)
         cy.get(this.update_profile_btn).click()
+        // cy.get(this.success_popup).should('be.visible')
     }
 }
