@@ -12,7 +12,7 @@ export class SignupPage{
     login_btn = '.btn'
 
     signupOrLoginEmail(email){
-        cy.get(this.signup_email).type(email)
+        cy.get(this.signup_email).clear().type(email)
         cy.get(this.signup_next_btn).click()
     }
     signup(password, fname, lname, company, phone, country){

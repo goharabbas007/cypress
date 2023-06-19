@@ -1,7 +1,7 @@
 export class HomePage{
     // defining locators
     home_accept_cookies_btn = '#onetrust-accept-btn-handler'
-    topbar_signup_link = 'span > a'
+    topbar_signup_link = 'p > span > :nth-child(1)'
     header_logo = '.TK-TLRK-Logo'
     nav_drawer_btn ='#js-tlrk-nav-drawer-button'
     search_link = '#js-tlrk-nav-search-link'
