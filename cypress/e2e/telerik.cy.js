@@ -75,4 +75,8 @@ describe('Account page', ()=>{
         homeObj.navDrawerBtn()
         accountObj.logout()
     })
+    // it('logout flow', ()=>{
+    //     homeObj.navDrawerBtn()
+    //     accountObj.logout()
+    // })
 })
