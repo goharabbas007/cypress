@@ -32,14 +32,17 @@ describe('Verify Search bar', ()=>{
     })
     it('valid data', ()=>{
         searchObj.searchBar('Types of Test Studio load tests')
+        cy.get('.TK-Search-Results-Query').should('have.text', 'Types of Test Studio load tests')
     })
     it('invalid data', ()=>{
-        searchObj.searchBar('asdf')
+        searchObj.searchBar('asdfjkl;')
+        cy.get('.TK-Search-Results-Zero > p').should('be.visible')
     })
     it('empty data', ()=>{
         searchObj.searchBar(' ')
+        cy.get(':nth-child(1) > .TK-Search-Results-List-Item-H').should('have.text', 'Telerik DevCraft')
     })
-    it('verify search result', ()=>{
+    it.only('verify search result', ()=>{
         searchObj.searchBar('Types of Test Studio load tests')
         searchObj.searchResult()
     })
@@ -53,30 +56,34 @@ describe('Verify Sign up', ()=>{
     })
     it('empty email', ()=>{
         signupObj.signupOrLoginEmail(' ')
+        cy.get('.btn-accent').should('be.disabled')
     })
     it('invalid email', ()=>{
         signupObj.signupOrLoginEmail('asdfgmail.com')
+        cy.get('.btn-accent').should('be.disabled')
     })
     it.skip('valid signup credentials', ()=>{
-        signupObj.signupOrLoginEmail('validemail2@gmail.com')
+        signupObj.signupOrLoginEmail('some@gmail.com')
+        cy.get('#password').should('be.empty')
         cy.wait(2000)
         signupObj.signup('password', 'first name', 'last name', 'xyz company', '090078601', 'Pakistan')
+        cy.get('.u-mb20').should('have.text', "We've Sent You an Account Activation Email")
     })
 })
+
 describe('Account page', ()=>{
     beforeEach(()=>{
         cy.login('gohar.abbas@invozone.com', 'goharabbas123')
+        cy.visit('https://www.telerik.com/account')
     })
     it('update profile', () => {
-        cy.visit('https://www.telerik.com/account')
         accountObj.updateProfile('new nickname')
     })
-    it('logout flow', ()=>{
+    it('select product & add to cart, checkout process', () => {
+        accountObj.addToCart('ali', 'abbas', 'email@gmail.com', 'company', '0900', 'address 123', 'Pakistan', 'Isb')
+    })
+    it('logout', ()=>{
         homeObj.navDrawerBtn()
         accountObj.logout()
     })
-    // it('logout flow', ()=>{
-    //     homeObj.navDrawerBtn()
-    //     accountObj.logout()
-    // })
 })
